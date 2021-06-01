@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-  return render_template('SignUp.html')
+  return render_template('register.html')
   #메인화면 route
 
 
