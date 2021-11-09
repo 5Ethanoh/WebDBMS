@@ -55,7 +55,7 @@ def post():
 #     return id_list
 
 def dbconn():
-    db = pymysql.connect(host='20.194.51.51', port=3306, user='connector', passwd='rkskek123#@!', db='ddd', charset='utf8')
+    db = pymysql.connect(host='10.1.0.5', port=3306, user='ethan@dbserver-weba-study-tdg', passwd='rkskek123#@!', db='web-dbms-study', charset='utf8')
     return db
 
 
@@ -63,81 +63,81 @@ def dbconn():
 def show_table():
     db=dbconn()
     cursor = db.cursor()
-    sql = '''SELECT * FROM customers;'''
+    sql = '''SELECT * FROM users;'''
     cursor.execute(sql)
     result = cursor.fetchall()
     db.close()
     return str(result)
 
 #테이블 ID 조회 함수
-def show_Id_table():
-    db=dbconn()
-    cursor = db.cursor()
-    sql = '''SELECT id FROM customers;'''
-    cursor.execute(sql)
-    result = cursor.fetchall()
-    db.close()
-    return str(result)
+# def show_Id_table():
+#     db=dbconn()
+#     cursor = db.cursor()
+#     sql = '''SELECT Id FROM users;'''
+#     cursor.execute(sql)
+#     result = cursor.fetchall()
+#     db.close()
+#     return str(result)
 
-def call_all_id():
-    cnx=dbconn()
-    cursor = cnx.cursor()
-    queryArr = []
-    queryArr.append("SELECT")
-    queryArr.append("id")
-    queryArr.append("FROM customers")
-    queryStr = " ".join(queryArr)
-    cursor.execute(queryStr)
-    dbCheckArr = []
-    for row in cursor:
-        dbCheckArr.append(row) 
-    cnx.close()
-    return dbCheckArr
+# def call_all_I():
+#     cnx=dbconn()
+#     cursor = cnx.cursor()
+#     queryArr = []
+#     queryArr.append("SELECT")
+#     queryArr.append("Id")
+#     queryArr.append("FROM users")
+#     queryStr = " ".join(queryArr)
+#     cursor.execute(queryStr)
+#     dbCheckArr = []
+#     for row in cursor:
+#         dbCheckArr.append(row) 
+#     cnx.close()
+#     return dbCheckArr
 
-def call_all_pwd():
-    cnx=dbconn()
-    cursor = cnx.cursor()
-    queryArr = []
-    queryArr.append("SELECT")
-    queryArr.append("password")
-    queryArr.append("FROM customers")
-    queryStr = " ".join(queryArr)
-    cursor.execute(queryStr)
-    dbCheckArr = []
-    for row in cursor:
-        dbCheckArr.append(row) 
-    cnx.close()
-    return dbCheckArr
+# def call_all_pwd():
+#     cnx=dbconn()
+#     cursor = cnx.cursor()
+#     queryArr = []
+#     queryArr.append("SELECT")
+#     queryArr.append("password")
+#     queryArr.append("FROM users")
+#     queryStr = " ".join(queryArr)
+#     cursor.execute(queryStr)
+#     dbCheckArr = []
+#     for row in cursor:
+#         dbCheckArr.append(row) 
+#     cnx.close()
+#     return dbCheckArr
 
-def call_all_name():
-    cnx=dbconn()
-    cursor = cnx.cursor()
-    queryArr = []
-    queryArr.append("SELECT")
-    queryArr.append("name")
-    queryArr.append("FROM customers")
-    queryStr = " ".join(queryArr)
-    cursor.execute(queryStr)
-    dbCheckArr = []
-    for row in cursor:
-        dbCheckArr.append(row) 
-    cnx.close()
-    return dbCheckArr       
+# def call_all_name():
+#     cnx=dbconn()
+#     cursor = cnx.cursor()
+#     queryArr = []
+#     queryArr.append("SELECT")
+#     queryArr.append("name")
+#     queryArr.append("FROM customers")
+#     queryStr = " ".join(queryArr)
+#     cursor.execute(queryStr)
+#     dbCheckArr = []
+#     for row in cursor:
+#         dbCheckArr.append(row) 
+#     cnx.close()
+#     return dbCheckArr       
 
 
-#TABLE INSERT 함수
-def insert_table(ID,PW,NAME):
-    db=dbconn()
-    cursor = db.cursor()
-    sql="INSERT INTO customers VALUES('%s','%s','%s')" %(ID,PW,NAME)
-    cursor.execute(sql)
-    result=cursor.fetchall()
-    db.commit()
-    db.close()
-    a=show_table() #Insert 후 조회하기
-    print(a)
-    return a;
+# #TABLE INSERT 함수
+# def insert_table(ID,PW,NAME):
+#     db=dbconn()
+#     cursor = db.cursor()
+#     sql="INSERT INTO customers VALUES('%s','%s','%s')" %(ID,PW,NAME)
+#     cursor.execute(sql)
+#     result=cursor.fetchall()
+#     db.commit()
+#     db.close()
+#     a=show_table() #Insert 후 조회하기
+#     print(a)
+#     return a;
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port='5000')
